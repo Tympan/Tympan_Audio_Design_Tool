@@ -21,9 +21,9 @@ all_lines(end+[1:length(foo_lines)]) = foo_lines; %accumulate the lines
 % create new nodes...this is the real core of this script. 
 origNode_fname = 'ParsedInputs\nodes.txt';   %previous content saved by parseIndexHTML.m
 newNode_pname = 'C:\Users\wea\Documents\Arduino\libraries\Tympan_Library\src\';  %%%%% point this to your Tympan_Library!!!!
-[nodes] = generateNodes(origNode_fname,newNode_pname);   %This function is beastly!  And probably fragile!
+[nodes,ignore_node_heading] = generateNodes(origNode_fname,newNode_pname);   %This function is beastly!  And probably fragile!
 outfname = 'NewOutputs\new_nodes.txt';
-writeNodeText(nodes,outfname);  %write to text file
+writeNodeText(nodes,outfname,ignore_node_heading);  %write to text file
 infname = outfname;
 foo_lines = readAllLines(infname); %load the text back in
 all_lines(end+[1:length(foo_lines)]) = foo_lines; %accumulate the lines
@@ -42,7 +42,8 @@ for Inode = 1:length(nodes)
     foo_lines = findAndLoadMatchingDoc(nodes(Inode).type,dir_f32,dir_orig);  %this is probably fragile, too!
     
     if isempty(foo_lines)
-        foo_lines = createEmptyDoc(nodes(Inode).type);
+        %foo_lines = createEmptyDoc(nodes(Inode).type);
+        foo_lines = createDefaultDoc(nodes(Inode).type,nodes(Inode).comment_lines);
     end
     all_lines(end+[1:length(foo_lines)]) = foo_lines;
 end

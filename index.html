@@ -378,17 +378,40 @@ span.mainfunction {color: #993300; font-weight: bolder}
 	]}
 </script>
 
+<script type="text/x-red" data-help-name="AudioCalcEnvelope_F32">
+<p> AudioCalcEnvelope_F32</p>
+<p> Created: Chip Audette, Feb 2017</p>
+<p> Purpose: This module extracts the envelope of the audio signal.</p>
+<p> Derived From: Core envelope extraction algorithm is from "smooth_env"</p>
+<p>     WDRC_circuit from CHAPRO from BTNRC: https://github.com/BTNRH/chapro</p>
+<p>     As of Feb 2017, CHAPRO license is listed as "Creative Commons?"</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioCalcEnvelope_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
 </script>
+<script type="text/x-red" data-help-name="AudioCalcGainWDRC_F32">
+<p> AudioCalcGainWDRC_F32</p>
+<p> Created: Chip Audette, Feb 2017</p>
+<p> Purpose: This module calculates the gain needed for wide dynamic range compression.</p>
+<p> Derived From: Core algorithm is from "WDRC_circuit"</p>
+<p>     WDRC_circuit from CHAPRO from BTNRC: https://github.com/BTNRH/chapro</p>
+<p>     As of Feb 2017, CHAPRO license is listed as "Creative Commons?"</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioCalcGainWDRC_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="AudioCalcLevel_F32">
+<p>Time weighting for sound level meter.  Defaults to SLOW</p>
 </script>
 <script type="text/x-red" data-template-name="AudioCalcLevel_F32 ">
 	<div class="form-row">
@@ -396,17 +419,39 @@ span.mainfunction {color: #993300; font-weight: bolder}
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
 </script>
+<script type="text/x-red" data-help-name="AudioCalcGainWDRC_F32">
+<p> AudioCalcGainWDRC_F32: Wide Dynamic Rnage Compressor</p>
+<p> Created: Chip Audette (OpenAudio) Feb 2017</p>
+<p> Derived From: WDRC_circuit from CHAPRO from BTNRC: https://github.com/BTNRH/chapro</p>
+<p>     As of Feb 2017, CHAPRO license is listed as "Creative Commons?"</p>
+<p> MIT License.  Use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioCalcGainWDRC_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
 </script>
+<script type="text/x-red" data-help-name="AudioEffectCompWDRC_F32">
+<p> AudioCalcGainWDRC_F32: Wide Dynamic Rnage Compressor</p>
+<p> Created: Chip Audette (OpenAudio) Feb 2017</p>
+<p> Derived From: WDRC_circuit from CHAPRO from BTNRC: https://github.com/BTNRH/chapro</p>
+<p>     As of Feb 2017, CHAPRO license is listed as "Creative Commons?"</p>
+<p> MIT License.  Use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioEffectCompWDRC_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="AudioEffectCompressor_F32">
+<p>   AudioEffectCompressor</p>
+<p>   Created: Chip Audette, Dec 2016 - Jan 2017</p>
+<p>   Purpose; Apply dynamic range compression to the audio stream.</p>
+<p>            Assumes floating-point data.</p>
+<p>   This processes a single stream fo audio data (ie, it is mono)</p>
+<p>   MIT License.  use at your own risk.</p>
 </script>
 <script type="text/x-red" data-template-name="AudioEffectCompressor_F32 ">
 	<div class="form-row">
@@ -678,11 +723,17 @@ span.mainfunction {color: #993300; font-weight: bolder}
 	</div>
 </script>
 
+<script type="text/x-red" data-help-name="AudioFilterFreqWeighting_F32">
+<p>Frequency weighting.  Defaults to A-Weighting</p>
+</script>
 <script type="text/x-red" data-template-name="AudioFilterFreqWeighting_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="AudioFilterTimeWeighting_F32">
+<p>Time weighting for sound level meter.  Defaults to SLOW</p>
 </script>
 <script type="text/x-red" data-template-name="AudioFilterTimeWeighting_F32 ">
 	<div class="form-row">
@@ -690,11 +741,27 @@ span.mainfunction {color: #993300; font-weight: bolder}
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
 </script>
+<script type="text/x-red" data-help-name="AudioMathAdd_F32">
+<p> AudioMathAdd_F32</p>
+<p> Created: Chip Audette, Open Audio, July 2018</p>
+<p> Purpose: Add together two channels (vectors) of audio data on a point-by-point basis</p>
+<p>     (like AudioMathMutiply, but addition).  Assumes floating-point data.</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioMathAdd_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="AudioMathMultiply_F32">
+<p> AudioMathMultiply</p>
+<p> Created: Patrick Radius, December 2016</p>
+<p> Purpose: Multiply two channels of audio data. Can be used for example as 'vca' or amplitude modulation.</p>
+<p> Assumes floating-point data.</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
 </script>
 <script type="text/x-red" data-template-name="AudioMathMultiply_F32 ">
 	<div class="form-row">
@@ -702,11 +769,27 @@ span.mainfunction {color: #993300; font-weight: bolder}
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
 </script>
+<script type="text/x-red" data-help-name="AudioMathOffset_F32">
+<p> AudioMathOffset_F32</p>
+<p> Created: Chip Audette, Open Audio, June 2018</p>
+<p> Purpose: Add a constant DC value to all audio samples</p>
+<p> Assumes floating-point data.</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
+</script>
 <script type="text/x-red" data-template-name="AudioMathOffset_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="AudioMathScale_F32">
+<p> AudioMathScale_F32</p>
+<p> Created: Chip Audette, Open Audio, June 2018</p>
+<p> Purpose: Multiply all audio samples by a single value (not vector)</p>
+<p> Assumes floating-point data.</p>
+<p> This processes a single stream fo audio data (ie, it is mono)</p>
+<p> MIT License.  use at your own risk.</p>
 </script>
 <script type="text/x-red" data-template-name="AudioMathScale_F32 ">
 	<div class="form-row">
@@ -816,11 +899,89 @@ span.mainfunction {color: #993300; font-weight: bolder}
 	</div>
 </script>
 
+<script type="text/x-red" data-help-name="FFT_Overlapped_F32">
+<p> FFT_Overrlapped_F32</p>
+<p> Purpose: Encapsulate the ARM floating point FFT/IFFT functions</p>
+<p>          in a way that naturally interfaces to my float32</p>
+<p>          extension of the Teensy Audio Library.</p>
+<p>          Provides functionality to do overlapped FFT/IFFT where</p>
+<p>          each audio block is a fraction (1, 1/2, 1/4) of the</p>
+<p>          totaly FFT length.  This class handles all of the</p>
+<p>          data shuffling to composite the previous data blocks</p>
+<p>          with the current data block to provide the full FFT.</p>
+<p>          Does similar data shuffling (overlapp-add) for IFFT.</p>
+<p> Created: Chip Audette (openaudio.blogspot.com)</p>
+<p>          Jan-Jul 2017</p>
+<p> Typical Usage as FFT:</p>
+<p>            //setup the audio stuff</p>
+<p>            float sample_rate_Hz = 44100.0;  //define sample rate</p>
+<p>            int audio_block_samples = 32;   //define size of audio blocks</p>
+<p>            AudioSettings_F32 audio_settings(sample_rate_Hz, audio_block_samples);</p>
+<p>            // ... continue creating all of your Audio Processing Blocks ...</p>
+<p>            // within a custom audio processing algorithm that you've written</p>
+<p>            // you'd create the FFT and IFFT elements</p>
+<p>            int NFFT = 128; //define length of FFT that you want (multiple of audio_block_samples)</p>
+<p>            FFT_Overrlapped_F32 FFT_obj(audio_settings,NFFT); //Creare FFT object</p>
+<p>            FFT_Overrlapped_F32 IFFT_obj(audio_settings,NFFT); //Creare IFFT object</p>
+<p>            float complex_2N_buffer[2*NFFT];  //create buffer to hold the FFT output</p>
+<p>            // within your own algorithm's "update()" function (which is what</p>
+<p>            // is called automatically by the Teensy Audio Libarary approach</p>
+<p>            // to audio processing), you can execute the FFT and IFFT</p>
+<p>            // First, get the audio and convert to frequency-domain using an FFT</p>
+<p>            audio_block_f32_t *in_audio_block = AudioStream_F32::receiveReadOnly_f32();</p>
+<p>            FFT_obj.execute(in_audio_block, complex_2N_buffer); //output is in complex_2N_buffer</p>
+<p>            AudioStream_F32::release(in_audio_block);  //We just passed ownership to FFT_obj, so release it here.</p>
+<p>            // Next do whatever processing you'd like on the frequency domain data</p>
+<p>            // that is held in complex_2N_buffer</p>
+<p>            // Finally, you can convert back to the time domain via IFFT</p>
+<p>            audio_block_f32_t *out_audio_block = IFFT_obj.execute(complex_2N_buffer);</p>
+<p>            //note that the "out_audio_block" is mananged by IFFT_obj, so don't worry about releasing it.</p>
+<p> License: MIT License</p>
+</script>
 <script type="text/x-red" data-template-name="FFT_Overlapped_F32 ">
 	<div class="form-row">
 		<label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
 		<input type="text" id="node-input-name" placeholder="Name">
 	</div>
+</script>
+<script type="text/x-red" data-help-name="IFFT_Overlapped_F32">
+<p> FFT_Overrlapped_F32</p>
+<p> Purpose: Encapsulate the ARM floating point FFT/IFFT functions</p>
+<p>          in a way that naturally interfaces to my float32</p>
+<p>          extension of the Teensy Audio Library.</p>
+<p>          Provides functionality to do overlapped FFT/IFFT where</p>
+<p>          each audio block is a fraction (1, 1/2, 1/4) of the</p>
+<p>          totaly FFT length.  This class handles all of the</p>
+<p>          data shuffling to composite the previous data blocks</p>
+<p>          with the current data block to provide the full FFT.</p>
+<p>          Does similar data shuffling (overlapp-add) for IFFT.</p>
+<p> Created: Chip Audette (openaudio.blogspot.com)</p>
+<p>          Jan-Jul 2017</p>
+<p> Typical Usage as FFT:</p>
+<p>            //setup the audio stuff</p>
+<p>            float sample_rate_Hz = 44100.0;  //define sample rate</p>
+<p>            int audio_block_samples = 32;   //define size of audio blocks</p>
+<p>            AudioSettings_F32 audio_settings(sample_rate_Hz, audio_block_samples);</p>
+<p>            // ... continue creating all of your Audio Processing Blocks ...</p>
+<p>            // within a custom audio processing algorithm that you've written</p>
+<p>            // you'd create the FFT and IFFT elements</p>
+<p>            int NFFT = 128; //define length of FFT that you want (multiple of audio_block_samples)</p>
+<p>            FFT_Overrlapped_F32 FFT_obj(audio_settings,NFFT); //Creare FFT object</p>
+<p>            FFT_Overrlapped_F32 IFFT_obj(audio_settings,NFFT); //Creare IFFT object</p>
+<p>            float complex_2N_buffer[2*NFFT];  //create buffer to hold the FFT output</p>
+<p>            // within your own algorithm's "update()" function (which is what</p>
+<p>            // is called automatically by the Teensy Audio Libarary approach</p>
+<p>            // to audio processing), you can execute the FFT and IFFT</p>
+<p>            // First, get the audio and convert to frequency-domain using an FFT</p>
+<p>            audio_block_f32_t *in_audio_block = AudioStream_F32::receiveReadOnly_f32();</p>
+<p>            FFT_obj.execute(in_audio_block, complex_2N_buffer); //output is in complex_2N_buffer</p>
+<p>            AudioStream_F32::release(in_audio_block);  //We just passed ownership to FFT_obj, so release it here.</p>
+<p>            // Next do whatever processing you'd like on the frequency domain data</p>
+<p>            // that is held in complex_2N_buffer</p>
+<p>            // Finally, you can convert back to the time domain via IFFT</p>
+<p>            audio_block_f32_t *out_audio_block = IFFT_obj.execute(complex_2N_buffer);</p>
+<p>            //note that the "out_audio_block" is mananged by IFFT_obj, so don't worry about releasing it.</p>
+<p> License: MIT License</p>
 </script>
 <script type="text/x-red" data-template-name="IFFT_Overlapped_F32 ">
 	<div class="form-row">

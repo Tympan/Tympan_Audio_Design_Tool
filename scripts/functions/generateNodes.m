@@ -1,4 +1,4 @@
-function [nodes] = generateNodes(origNode_fname,newNode_pname,outfname)
+function [nodes,ignore_node_heading] = generateNodes(origNode_fname,newNode_pname,outfname)
 
 if nargin < 3
     %outfname = 'NewOutputs\new_nodes.txt';
@@ -77,7 +77,7 @@ for Ikeep=1:length(nodes_keep)
     end
 end
 
-%% add in new nodes
+%% read source files and load new node data
 
 %To build text for the new nodes, use buildNewNodes.m.
 %Then paste into XLSX to edit as desired.
@@ -91,8 +91,10 @@ else
     %source_pname = 'C:\Users\wea\Documents\Arduino\libraries\OpenAudio_ArduinoLibrary\';
     [headings, new_node_data]=buildNewNodes(newNode_pname);
 end
+ignore_node_heading = 'comment_lines';
 
-%build new node data elements
+%% generate the new nodes 
+
 if ~isempty(nodes)
     template = nodes(1);
 else
@@ -110,7 +112,9 @@ new_nodes=[];
 for Inode = 1:size(new_node_data,1)
     node = template;
     for Iheading = 1:length(headings)
-        node.(headings{Iheading}) = new_node_data{Inode,Iheading};
+        %if ~strcmpi(headings{Iheading},ignore_node_heading)
+            node.(headings{Iheading}) = new_node_data{Inode,Iheading};
+        %end
     end
     
     if isempty(nodes)
@@ -204,7 +208,7 @@ end
 
 %% write new nodes
 if ~isempty(outfname)
-    writeNodeText(nodes,outfname)
+    writeNodeText(nodes,outfname,ignore_node_heading)
 end
 
 

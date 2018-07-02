@@ -14,11 +14,13 @@ fnames = dir([source_pname '*.h']);
 all_class_names={};
 all_num_inputs=[];
 all_class_lines={};
+all_comment_lines={};
 for Ifile=1:length(fnames)
-    [class_names,class_lines] = findClassNames(fnames(Ifile));
+    [class_names,class_lines, comment_lines] = findClassNames(fnames(Ifile));
     all_class_names(end+[1:length(class_names)]) = class_names;
     %all_num_inputs(end+[1:length(class_names)]) = num_class_inputs;
     all_class_lines(end+[1:length(class_lines)]) = class_lines;
+    all_comment_lines(end+[1:length(comment_lines)]) = comment_lines;
 end
 
 %guess a shortname for each one
@@ -37,7 +39,8 @@ all_categories = guessCategory(all_class_names);
 all_icons = chooseIcon(all_class_names,all_categories);
 
 %display results
-headings = {'type';'shortName';'inputs';'outputs';'category';'color';'icon'};new_node_data={};
+%headings = {'type';'shortName';'inputs';'outputs';'category';'color';'icon'};new_node_data={};
+headings = {'type';'shortName';'inputs';'outputs';'category';'color';'icon';'comment_lines'};new_node_data={};
 for Iclass=1:length(all_class_names)
     new_node_data{Iclass,1} = all_class_names{Iclass};
     new_node_data{Iclass,2} = all_short_names{Iclass};
@@ -60,6 +63,10 @@ for Iclass=1:length(all_class_names)
         end
     end
     disp(str);
+    
+    %add in the comment lines
+    new_node_data{Iclass,8} = strvcat(all_comment_lines{Iclass});
+    
 end
 
 if nargout == 0
@@ -73,7 +80,7 @@ end
 
 
 %% %%%%%%%%%%%%%%%%%%555
-function [names, class_lines] = findClassNames(fname)
+function [names, class_lines, comment_lines] = findClassNames(fname)
 if isstruct(fname)
     %assume it is output from Matlab's "dir"
     fname = [fname.folder '\' fname.name];
@@ -86,6 +93,7 @@ all_lines = readAllLines(fname);
 targ_str = 'class ';
 names = {};
 row_ind_class = [];
+comment_lines={};
 for Iline = 1:length(all_lines)
     line = all_lines{Iline};
     if length(line) >= length(targ_str)
@@ -122,6 +130,14 @@ for Iline = 1:length(all_lines)
                 %save the class name
                 names{end+1} = name;
                 row_ind_class(end+1) = Iline;
+                
+                %get the comment info for this class
+                comment_lines{end+1} = getCommentLines(all_lines,Iline);
+                
+                %disp(['************** NAME: ' name]);
+                %for I=1:length(comment_lines)
+                %    strvcat(comment_lines{I})
+                %end
             end
         end
     end
