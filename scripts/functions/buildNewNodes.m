@@ -272,15 +272,28 @@ for Iname=1:length(class_names)
     if strcmpi(name,'outputUSB');
         name = 'audioOutUSB';
     end
+    if strcmpi(name,'freqWeighting');
+        name = 'freqWeight';
+    end  
+    if strcmpi(name,'timeWeighting');
+        name = 'timeWeight';
+    end   
+    if strcmpi(name,'FFT_Overlapped');
+        name = 'blockwiseFFT';
+    end   
+    if strcmpi(name,'IFFT_Overlapped');
+        name = 'blockwiseIFFT';
+    end   
+
     
-    %strop off leading space or underscore
+    %strip off leading space or underscore
     while( (name(1) == ' ') | (name(1) == '_')); name=name(2:end);  end
     
     %strop off trailing space or underscore
     while( (name(end) == ' ') | (name(end) == '_')); name=name(1:end-1);  end
     
     %adjust the case
-    if strcmpi(name(1:3),'I16') | strcmpi(name(1:3),'F32');
+    if strcmpi(name(1:3),'I16') | strcmpi(name(1:3),'F32') | strcmpi(name(1:3),'FFT') | strcmpi(name(1:3),'IFF');
         %don't change the case
     else
         %do change the case

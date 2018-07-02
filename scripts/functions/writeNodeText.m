@@ -25,7 +25,7 @@ for Inode=1:length(nodes)
         if Ifn < length(fn)
             fprintf(fid,',');
         else
-            if field_val(end-1:end) == '}}';
+            if (length(field_val) > 1) && (field_val(end-1:end) == '}}');
                 %do nothing;
             else
                 %insert these symbols
