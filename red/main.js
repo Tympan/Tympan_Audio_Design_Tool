@@ -83,8 +83,8 @@ var RED = (function() {
 			
 			//create the Tympan hardware classes
 			cpp += "//Create audio objects\n"
-			cpp += "TympanPins\ttympPins(TYMPAN_REV_C);\t//TYMPAN_REV_C or TYMPAN_REV_D\n";
-			cpp += "TympanBase\taudioHardware(tympPins);\n";
+			cpp += "TympanPins\t\t\ttympPins(TYMPAN_REV_C);\t//TYMPAN_REV_C or TYMPAN_REV_D\n";
+			cpp += "TympanBase\t\t\taudioHardware(tympPins);\n";
 			
 			// generate code for all control nodes (no inputs or outputs)
 			for (var i=0; i<nns.length; i++) {
@@ -92,10 +92,10 @@ var RED = (function() {
 				var node = RED.nodes.node(n.id);
 				if (node && node.outputs == 0 && node._def.inputs == 0) {
 					cpp += n.type + " ";
-					for (var j=n.type.length; j<24; j++) cpp += " ";
+					for (var j=n.type.length; j<24; j++) cpp += " "; //add correct # of spaces to vertically align the names
 					cpp += n.id + "; ";
-					for (var j=n.id.length; j<14; j++) cpp += " ";
-					cpp += "//xy=" + n.x + "," + n.y + "\n";
+					//for (var j=n.id.length; j<14; j++) cpp += " "; //add correct # of spaces to vertically align the comments
+					//cpp += "//xy=" + n.x + "," + n.y + "\n";
 				}
 			}						
 				
@@ -105,10 +105,10 @@ var RED = (function() {
 				var node = RED.nodes.node(n.id);
 				if (node && (node.outputs > 0 || node._def.inputs > 0)) {
 					cpp += n.type + " ";
-					for (var j=n.type.length; j<24; j++) cpp += " ";
+					for (var j=n.type.length; j<24; j++) cpp += " ";  //add correct # of spaces to vertically align the names
 					var name = make_name(n)
 					cpp += name + "(audio_settings);";
-					for (var j=n.id.length; j<14; j++) cpp += " ";
+					//for (var j=n.id.length; j<14; j++) cpp += " "; //add correct # of spaces to vertically align the comments
 					//cpp += "//xy=" + n.x + "," + n.y
 					cpp += "\n";
 				}
@@ -129,7 +129,7 @@ var RED = (function() {
 							if (wire) {
 								var parts = wire.split(":");
 								if (parts.length == 2) {
-									cpp += "AudioConnection_F32         patchCord" + cordcount + "(";
+									cpp += "AudioConnection_F32      patchCord" + cordcount + "(";
 									var src = RED.nodes.node(n.id);
 									var dst = RED.nodes.node(parts[0]);
 									var src_name = make_name(src);
