@@ -273,14 +273,16 @@ var RED = (function() {
 			RED.view.state(RED.state.EXPORT);
 			RED.view.getForm('dialog-form', 'export-clipboard-dialog', function (d, f) {
 				$("#node-input-export").val(cpp).focus(function() {
-				var textarea = $(this);
-				textarea.select();
-				textarea.mouseup(function() {
-					textarea.unbind("mouseup");
-					return false;
-				});
+					var textarea = $(this);
+					textarea.select();
+					textarea.mouseup(function() {
+						textarea.unbind("mouseup");
+						return false;
+					});
 				}).focus();
-			$( "#dialog" ).dialog("option","title","Export to Arduino").dialog("option","width",600).dialog( "open" );
+				var z = $("#download-INO");
+				z[0].href = "data:," + cpp;
+				$( "#dialog" ).dialog("option","title","Export to Arduino").dialog("option","width",600).dialog( "open" );
 			});
 			//RED.view.dirty(false);
 		} else {
