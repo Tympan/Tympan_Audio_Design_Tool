@@ -280,8 +280,18 @@ var RED = (function() {
 						return false;
 					});
 				}).focus();
-				var z = $("#download-INO");
-				z[0].href = "data:," + cpp;
+				// Create zip object (folders and files):
+				let mainName = "myTympanSketch";
+				let zip = new JSZip();
+				let mainFolder = zip.folder(mainName);
+				mainFolder.file(mainName+".ino",cpp);
+				// To add another file to this zip folder:
+				// mainFolder.file("hdr.h",cpp_hdr_h);
+				zip.generateAsync({type:"base64"}).then((content)=>{
+					var z = $("#download-INO");
+					z[0].download = mainName+".zip"; // The default download name
+					z[0].href = "data:application/zip;base64," + content;
+				});
 				$( "#dialog" ).dialog("option","title","Export to Arduino").dialog("option","width",600).dialog( "open" );
 			});
 			//RED.view.dirty(false);
